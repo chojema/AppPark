@@ -145,18 +145,6 @@ a:focus-visible {
 
 .app a:hover { text-decoration: underline; }
 
-.app-icon { position: relative; flex: none; }
-
-/* Each icon plays its function once on load, then the original image shows. */
-.icon-fx {
-  display: none;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
 .platforms {
   display: flex;
   flex-wrap: wrap;
@@ -251,61 +239,12 @@ footer a { color: #ffffff; text-decoration: none; }
 
 /* The single orchestrated moment: apps settle on the shelf */
 @media (prefers-reduced-motion: no-preference) {
-  .app { --d: 0ms; animation: settle 800ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--d) both; }
-  .app:nth-child(2) { --d: 100ms; }
-  .app:nth-child(3) { --d: 200ms; }
-  .app:nth-child(4) { --d: 300ms; }
-  .app:nth-child(5) { --d: 400ms; }
-  .app:nth-child(6) { --d: 500ms; }
-
-  .icon-fx {
-    display: block;
-    --start: calc(var(--d) + 450ms);
-    animation: fx-out 200ms linear calc(var(--start) + 1900ms) both;
-  }
-
-  .fx-fill,
-  .fx-write,
-  .fx-press { transform-box: fill-box; }
-
-  .fx-fill {
-    transform-origin: top;
-    animation: fx-shrink-y 800ms cubic-bezier(0.3, 0.7, 0.2, 1) calc(var(--start) + var(--t)) both;
-  }
-
-  .fx-write {
-    transform-origin: right;
-    animation: fx-shrink-x 380ms ease-out calc(var(--start) + var(--t)) both;
-  }
-
-  .fx-dot { animation: fx-show 140ms linear calc(var(--start) + var(--t)) backwards; }
-  .fx-blink { animation: fx-blink 1100ms steps(1) var(--start) both; }
-  .fx-press { animation: fx-press 1000ms ease-in-out var(--start) both; }
-
-  .fx-draw {
-    stroke-dasharray: 480;
-    animation: fx-draw 1100ms ease-in-out var(--start) both;
-  }
-
-  @keyframes fx-out { to { opacity: 0; } }
-  @keyframes fx-shrink-y { to { transform: scaleY(0); } }
-  @keyframes fx-shrink-x { to { transform: scaleX(0); } }
-  @keyframes fx-show { from { opacity: 0; } }
-
-  @keyframes fx-blink {
-    0%, 50% { opacity: 1; }
-    25%, 75%, 100% { opacity: 0; }
-  }
-
-  @keyframes fx-press {
-    0%, 50%, 100% { transform: none; }
-    20%, 70% { transform: translateY(14px); }
-  }
-
-  @keyframes fx-draw {
-    from { stroke-dashoffset: 480; }
-    to { stroke-dashoffset: 0; }
-  }
+  .app { animation: settle 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .app:nth-child(2) { animation-delay: 100ms; }
+  .app:nth-child(3) { animation-delay: 200ms; }
+  .app:nth-child(4) { animation-delay: 300ms; }
+  .app:nth-child(5) { animation-delay: 400ms; }
+  .app:nth-child(6) { animation-delay: 500ms; }
 
   @keyframes settle {
     from { opacity: 0; transform: translateY(24px); }
