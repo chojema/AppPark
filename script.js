@@ -3,20 +3,28 @@
 
   var text = {
     ko: {
-      description: "AIUsageWidget, Chojema Dooroo, Chojema Editor를 모아 둔 곳입니다.",
+      description: "AIUsageWidget, Chojema Dooroo, Chojema Editor 등 여러 앱을 모아 둔 곳입니다.",
       platformsLabel: "지원 환경",
       widgetLine: "AI 코딩 도구의 남은 사용량을 터미널 바로 아래에서 확인합니다.",
       doorooLine: "HWPX와 HWP 문서를 위한 데스크톱 워드 프로세서입니다.",
       editorLine: "Markdown과 HTML을 보이는 그대로 편집하고, TXT, JSON, SVG 등도 다루는 텍스트 편집기입니다.",
-      viewOnGitHub: "GitHub에서 보기"
+      inputLensLine: "누른 키와 마우스 입력을 화면에 잠깐 보여 주는 가벼운 상주 앱입니다.",
+      webDeltaLine: "등록해 둔 웹페이지의 변경 여부를 확인하는 로컬 앱입니다.",
+      countdownLine: "시험장 등에서 현재 시각과 종료 시각, 남은 시간을 화면에 표시합니다.",
+      viewOnGitHub: "GitHub에서 보기",
+      readArticle: "소개 글 보기"
     },
     en: {
-      description: "A home for AIUsageWidget, Chojema Dooroo, and Chojema Editor.",
+      description: "A home for AIUsageWidget, Chojema Dooroo, Chojema Editor, and more.",
       platformsLabel: "Available on",
       widgetLine: "See the remaining usage of your AI coding tools, right below your terminal.",
       doorooLine: "A desktop word processor for HWPX and HWP documents.",
       editorLine: "A text editor that lets you edit Markdown and HTML as they appear, and also handles TXT, JSON, SVG, and more.",
-      viewOnGitHub: "View on GitHub"
+      inputLensLine: "A lightweight tray app that briefly shows key and mouse input on screen.",
+      webDeltaLine: "A local app that checks whether the web pages you registered have changed.",
+      countdownLine: "Keep the current time, end time, and time remaining on screen, in an exam room or anywhere else.",
+      viewOnGitHub: "View on GitHub",
+      readArticle: "Read the article"
     }
   };
 
