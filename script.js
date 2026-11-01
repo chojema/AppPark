@@ -4,7 +4,6 @@
   var text = {
     ko: {
       description: "AIUsageWidget, Chojema Dooroo, Chojema Editor를 모아 둔 곳입니다.",
-      navLabel: "앱",
       platformsLabel: "지원 환경",
       widgetLine: "AI 코딩 도구의 남은 사용량을 터미널 바로 아래에서 확인합니다.",
       doorooLine: "HWPX와 HWP 문서를 위한 데스크톱 워드 프로세서입니다.",
@@ -13,7 +12,6 @@
     },
     en: {
       description: "A home for AIUsageWidget, Chojema Dooroo, and Chojema Editor.",
-      navLabel: "Apps",
       platformsLabel: "Available on",
       widgetLine: "See the remaining usage of your AI coding tools, right below your terminal.",
       doorooLine: "A desktop word processor for HWPX and HWP documents.",
