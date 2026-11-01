@@ -162,6 +162,33 @@ a:focus-visible {
 
 .app a:hover { text-decoration: underline; }
 
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  margin: 18px 0 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  list-style: none;
+}
+
+.platforms li,
+.app .platforms a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app .platforms a {
+  margin: 0;
+  color: var(--link);
+  font-size: inherit;
+}
+
+.platforms svg { width: 15px; height: 15px; fill: currentColor; }
+
 .app-dooroo { background: var(--mint); }
 
 footer {
