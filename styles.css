@@ -1,0 +1,160 @@
+:root {
+  --ink: #1d1d1f;
+  --ink-soft: #5f5f66;
+  --link: #0066cc;
+  --paper: #ffffff;
+  --mist: #f5f5f7;
+  --lilac: #efeefb;
+  --night: #000000;
+  --night-soft: #a1a6b3;
+  --night-link: #64b0ff;
+  --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Segoe UI", "Malgun Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 48px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.5;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* Global bar */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 48px;
+  padding: 0 max(16px, calc((100% - 980px) / 2));
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  font-size: 13px;
+}
+
+.bar a { color: var(--ink); text-decoration: none; }
+.bar a:hover { color: var(--link); }
+.bar-home { font-weight: 600; white-space: nowrap; }
+.bar nav { display: flex; gap: clamp(12px, 3vw, 28px); }
+
+/* Opening display */
+.hero {
+  padding: clamp(72px, 12vh, 128px) 16px clamp(72px, 11vh, 112px);
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(46px, 9vw, 104px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.shelf {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 56px);
+  margin: clamp(56px, 9vh, 88px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shelf a { display: block; border-radius: 24%; }
+
+.shelf img {
+  display: block;
+  width: clamp(76px, 15vw, 152px);
+  height: auto;
+  filter: drop-shadow(0 22px 20px rgba(29, 29, 31, 0.2));
+}
+
+/* One room for each app */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: min(88vh, 820px);
+  padding: 88px 24px;
+  text-align: center;
+}
+
+.app img {
+  width: clamp(136px, 22vw, 200px);
+  height: auto;
+  filter: drop-shadow(0 30px 28px rgba(0, 0, 0, 0.24));
+}
+
+.app h2 {
+  margin: 44px 0 0;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.app p {
+  max-width: 30em;
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(19px, 2.4vw, 25px);
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+}
+
+.app a {
+  margin-top: 26px;
+  color: var(--link);
+  font-size: 19px;
+  text-decoration: none;
+}
+
+.app a:hover { text-decoration: underline; }
+
+.app-widget { background: var(--night); color: #ffffff; }
+.app-widget p { color: var(--night-soft); }
+.app-widget a { color: var(--night-link); }
+.app-dooroo { background: var(--mist); }
+.app-editor { background: var(--lilac); }
+
+footer {
+  padding: 28px 16px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* The single orchestrated moment: apps settle on the shelf */
+@media (prefers-reduced-motion: no-preference) {
+  .shelf li { animation: settle 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .shelf li:nth-child(2) { animation-delay: 110ms; }
+  .shelf li:nth-child(3) { animation-delay: 220ms; }
+
+  @keyframes settle {
+    from { opacity: 0; transform: translateY(36px) scale(0.94); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
