@@ -11,6 +11,7 @@
       inputLensLine: "누른 키와 마우스 입력을 화면에 잠깐 보여 주는 가벼운 상주 앱입니다.",
       webDeltaLine: "등록해 둔 웹페이지의 변경 여부를 확인하는 로컬 앱입니다.",
       countdownLine: "시험장 등에서 현재 시각과 종료 시각, 남은 시간을 화면에 표시합니다.",
+      keyStampLine: "Windows와 Mac 키보드 키캡 이미지와 애니메이션을 만드는 데스크톱 앱입니다.",
       viewOnGitHub: "GitHub에서 보기",
       readArticle: "소개 글 보기"
     },
@@ -23,6 +24,7 @@
       inputLensLine: "A lightweight tray app that briefly shows key and mouse input on screen.",
       webDeltaLine: "A local app that checks whether the web pages you registered have changed.",
       countdownLine: "Keep the current time, end time, and time remaining on screen, in an exam room or anywhere else.",
+      keyStampLine: "A desktop app for creating Windows and Mac keyboard keycap images and animations.",
       viewOnGitHub: "View on GitHub",
       readArticle: "Read the article"
     }
