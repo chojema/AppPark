@@ -1,9 +1,21 @@
 (function () {
   var STORAGE_KEY = "language";
+  var CANONICAL_URL = "https://chojema.github.io/AppPark/";
+  var PAGE_TITLE = "Chojema App Park";
+  var SHARE_DESCRIPTION = "A collection of useful Windows and Mac apps including AIUsageWidget, Chojema Dooroo, Chojema Editor, and more. / AIUsageWidget, Chojema Dooroo, Chojema Editor 등 유용한 Windows와 Mac용 앱을 모아 둔 곳입니다.";
+  var SHARE_SUMMARY = PAGE_TITLE + " — " + SHARE_DESCRIPTION;
 
   var text = {
     ko: {
-      description: "AIUsageWidget, Chojema Dooroo, Chojema Editor 등 여러 앱을 모아 둔 곳입니다.",
+      description: "AIUsageWidget, Chojema Dooroo, Chojema Editor 등 유용한 Windows와 Mac용 앱을 모아 둔 곳입니다.",
+      shareButton: "공유",
+      shareLabel: "이 페이지 공유",
+      shareMenuLabel: "공유 대상",
+      shareNaver: "네이버",
+      shareBand: "밴드",
+      copyLink: "링크 복사",
+      copiedLink: "복사됨",
+      moreShare: "더보기",
       platformsLabel: "지원 환경",
       widgetLine: "AI 코딩 도구의 남은 사용량을 터미널 바로 아래에서 확인합니다.",
       copyKeepLine: "텍스트와 이미지의 복사 기록을 저장하고, 단축키로 불러와 붙여넣는 클립보드 관리 앱입니다.",
@@ -20,7 +32,15 @@
       readArticle: "소개 글 보기"
     },
     en: {
-      description: "A home for AIUsageWidget, Chojema Dooroo, Chojema Editor, and more.",
+      description: "A collection of useful Windows and Mac apps including AIUsageWidget, Chojema Dooroo, Chojema Editor, and more.",
+      shareButton: "Share",
+      shareLabel: "Share this page",
+      shareMenuLabel: "Share targets",
+      shareNaver: "Naver",
+      shareBand: "Band",
+      copyLink: "Copy link",
+      copiedLink: "Copied",
+      moreShare: "More",
       platformsLabel: "Available on",
       widgetLine: "See the remaining usage of your AI coding tools, right below your terminal.",
       copyKeepLine: "A clipboard manager that saves copied text and images and lets you recall and paste them with a keyboard shortcut.",
@@ -39,8 +59,48 @@
   };
 
   var button = document.getElementById("language-switch");
+  var shareContainer = document.getElementById("share");
+  var shareToggle = document.getElementById("share-toggle");
+  var shareMenu = document.getElementById("share-menu");
+  var shareCopy = document.getElementById("share-copy");
+  var shareCopyText = document.getElementById("share-copy-text");
+  var shareNative = document.getElementById("share-native");
+  var currentLanguage = "ko";
+  var copyTimer = null;
 
   document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+  function shareUrl() {
+    if (/^https?:/i.test(window.location.protocol) && !/^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname)) {
+      return window.location.href.split("#")[0];
+    }
+    return CANONICAL_URL;
+  }
+
+  function updateShareLinks() {
+    var url = shareUrl();
+    var encodedUrl = encodeURIComponent(url);
+    var encodedSummary = encodeURIComponent(SHARE_SUMMARY);
+    var encodedFull = encodeURIComponent(SHARE_SUMMARY + " " + url);
+    var encodedBand = encodeURIComponent(SHARE_SUMMARY + "\n" + url);
+
+    var map = {
+      x: "https://twitter.com/intent/tweet?url=" + encodedUrl + "&text=" + encodedSummary,
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl,
+      threads: "https://www.threads.net/intent/post?text=" + encodedFull,
+      linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + encodedUrl,
+      reddit: "https://www.reddit.com/submit?url=" + encodedUrl + "&title=" + encodedSummary,
+      telegram: "https://t.me/share/url?url=" + encodedUrl + "&text=" + encodedSummary,
+      line: "https://social-plugins.line.me/lineit/share?url=" + encodedUrl + "&text=" + encodedSummary,
+      naver: "https://share.naver.com/web/shareView?url=" + encodedUrl + "&title=" + encodedSummary,
+      band: "https://band.us/plugin/share?body=" + encodedBand + "&route=" + encodedUrl
+    };
+
+    document.querySelectorAll("[data-share]").forEach(function (anchor) {
+      var key = anchor.dataset.share;
+      if (map[key]) anchor.href = map[key];
+    });
+  }
 
   function readSaved() {
     try {
@@ -65,6 +125,7 @@
   }
 
   function apply(language) {
+    currentLanguage = language;
     var strings = text[language];
     document.documentElement.lang = language;
 
@@ -76,11 +137,54 @@
     });
     document.querySelector('meta[name="description"]').content = strings.description;
 
+    updateShareLinks();
+
     // The button is named in the language it switches to.
     var next = language === "ko" ? "en" : "ko";
     button.textContent = next === "en" ? "English" : "한국어";
     button.lang = next;
     button.dataset.next = next;
+  }
+
+  function setShareOpen(open) {
+    shareMenu.hidden = !open;
+    shareToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function copyShareUrl() {
+    var url = shareUrl();
+    var done = function () {
+      if (copyTimer) window.clearTimeout(copyTimer);
+      shareCopyText.textContent = text[currentLanguage].copiedLink;
+      copyTimer = window.setTimeout(function () {
+        shareCopyText.textContent = text[currentLanguage].copyLink;
+      }, 1800);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () {
+        fallbackCopy(url, done);
+      });
+    } else {
+      fallbackCopy(url, done);
+    }
+  }
+
+  function fallbackCopy(value, callback) {
+    var input = document.createElement("textarea");
+    input.value = value;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.select();
+    try {
+      document.execCommand("copy");
+      callback();
+    } catch (error) {
+      // Ignore copy errors if blocked by browser policy.
+    }
+    document.body.removeChild(input);
   }
 
   button.addEventListener("click", function () {
@@ -89,6 +193,48 @@
     apply(next);
   });
 
+  shareToggle.addEventListener("click", function () {
+    setShareOpen(shareMenu.hidden);
+  });
+
+  shareMenu.addEventListener("click", function (event) {
+    if (event.target.closest("a[data-share]")) {
+      setShareOpen(false);
+    }
+  });
+
+  shareCopy.addEventListener("click", function () {
+    copyShareUrl();
+  });
+
+  if (typeof navigator.share === "function") {
+    shareNative.hidden = false;
+    shareNative.addEventListener("click", function () {
+      setShareOpen(false);
+      navigator.share({
+        title: PAGE_TITLE,
+        text: SHARE_SUMMARY,
+        url: shareUrl()
+      }).catch(function () {
+        // User cancelled or share failed.
+      });
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!shareMenu.hidden && !shareContainer.contains(event.target)) {
+      setShareOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !shareMenu.hidden) {
+      setShareOpen(false);
+      shareToggle.focus();
+    }
+  });
+
   apply(initialLanguage());
   button.hidden = false;
+  shareContainer.hidden = false;
 })();
