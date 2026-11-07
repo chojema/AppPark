@@ -14,6 +14,7 @@
       webDeltaLine: "등록해 둔 웹페이지의 변경 여부를 확인하는 로컬 앱입니다.",
       countdownLine: "시험장 등에서 현재 시각과 종료 시각, 남은 시간을 화면에 표시합니다.",
       keyStampLine: "Windows와 Mac 키보드 키캡 이미지와 애니메이션을 만드는 데스크톱 앱입니다.",
+      officeLine: "문서·발표·PDF·이미지 앱을 한 창에서 설치·업데이트·실행하는 런처 앱입니다.",
       viewOnGitHub: "GitHub에서 보기",
       readArticle: "소개 글 보기"
     },
@@ -29,6 +30,7 @@
       webDeltaLine: "A local app that checks whether the web pages you registered have changed.",
       countdownLine: "Keep the current time, end time, and time remaining on screen, in an exam room or anywhere else.",
       keyStampLine: "A desktop app for creating Windows and Mac keyboard keycap images and animations.",
+      officeLine: "A desktop launcher for installing, updating, and opening writing, spreadsheet, presentation, PDF, and image apps from one window.",
       viewOnGitHub: "View on GitHub",
       readArticle: "Read the article"
     }
