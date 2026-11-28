@@ -373,6 +373,7 @@ footer a { color: #ffffff; text-decoration: none; }
   .app:nth-child(12) { animation-delay: 1100ms; }
   .app:nth-child(13) { animation-delay: 1200ms; }
   .app:nth-child(14) { animation-delay: 1300ms; }
+  .app:nth-child(15) { animation-delay: 1400ms; }
 
   @keyframes settle {
     from { opacity: 0; transform: translateY(24px); }
