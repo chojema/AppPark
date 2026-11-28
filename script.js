@@ -30,7 +30,7 @@
       officeLine: "문서·발표·PDF·이미지 앱을 한 창에서 설치·업데이트·실행하는 런처 앱입니다.",
       optSwitchLine: "Option+Tab으로 열린 문서 창 사이를 Windows Alt+Tab처럼 전환하는 macOS용 창 전환기입니다.",
       pdfLockLine: "PDF 파일에 열기 암호와 인쇄·편집·복사 권한 암호(AES-256)를 거는 데스크톱 앱입니다.",
-      shotDeskLine: "창·스크롤 영역·텍스트(OCR)를 단축키로 캡처하고 바로 주석을 달아 편집하는 트레이 상주형 캡처 앱입니다.",
+      shotDeskLine: "창·스크롤 영역·텍스트(OCR)를 빠르게 캡처하고 바로 주석을 달아 편집할 수 있는 화면 캡처 앱입니다.",
       tickerBarLine: "주요 일정과 메모를 화면 가장자리에 흐르는 띠로 보여 주는 Windows 앱입니다.",
       viewOnGitHub: "GitHub에서 보기",
       readArticle: "소개 글 보기"
@@ -59,7 +59,7 @@
       officeLine: "A desktop launcher for installing, updating, and opening writing, spreadsheet, presentation, PDF, and image apps from one window.",
       optSwitchLine: "A macOS window switcher that lets you cycle through open document windows with Option+Tab, just like Alt+Tab on Windows.",
       pdfLockLine: "A desktop app for protecting PDF files with an open password and a permissions password (AES-256).",
-      shotDeskLine: "A tray-resident capture app that grabs windows, scrolling areas, and text (OCR) with a hotkey and lets you annotate them right away.",
+      shotDeskLine: "A screen capture app that grabs windows, scrolling areas, and text (OCR) in a snap and lets you annotate and edit them right away.",
       tickerBarLine: "A Windows app that scrolls your key appointments and notes along the edge of the screen.",
       viewOnGitHub: "View on GitHub",
       readArticle: "Read the article"
